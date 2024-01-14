@@ -7,6 +7,20 @@ import { ConflictException, Injectable } from "@nestjs/common";
 export class UsersService{
     constructor(private prisma: PrismaService){}
 
+    async getUserById(id: string): Promise<Users> {
+        const user = await this.prisma.users.findUnique({
+            where: {
+                id: parseInt(id, 10),
+            },
+        });
+
+        if (!user) {
+            throw new ConflictException('User not found');
+        }
+
+        return user;
+    }
+
     async getAllUser():Promise<Users[]>{
         return this.prisma.users.findMany()
     }

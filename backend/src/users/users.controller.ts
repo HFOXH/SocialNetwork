@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res } from '@nestjs/common';
+import { Controller, Get, Param, Req, Res } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request, Response } from 'express';
 
@@ -21,6 +21,24 @@ export class UsersController{
                 message: 'Internal Server Error!',
                 result: e
             })
+        }
+    }
+
+    @Get(':id')
+    async getUserById(@Param('id') id: string, @Res() response: Response): Promise<any> {
+        try {
+            const result = await this.UserService.getUserById(id);
+            return response.status(200).json({
+                status: 'Ok!',
+                message: 'Successfully fetch user by ID!',
+                result: result,
+            });
+        } catch (e) {
+            return response.status(404).json({
+                status: 'Error!',
+                message: 'User not found!',
+                result: e,
+            });
         }
     }
 }

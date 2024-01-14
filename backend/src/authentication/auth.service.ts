@@ -31,8 +31,11 @@ export class AuthService{
             throw new NotFoundException('Invalid user or password');
         }
 
+        const token = this.jwtService.sign({email}, { expiresIn: process.env.JWT_EXPIRES_IN })
+
         return {
-            token: this.jwtService.sign({email}, { expiresIn: process.env.JWT_EXPIRES_IN })
+            userId: users.id,
+            token
         }
     }
 
