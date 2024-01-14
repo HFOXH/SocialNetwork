@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Users } from './Users';
+import { Posts } from './Posts';
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +23,13 @@ export class ConectionService {
   getUserbyId(id:number): Observable<any>{
     return this.clientHttp.get(this.api+'users/'+id);
   }
+
+  getAllPosts(){
+    return this.clientHttp.get(this.api+'posts')
+  }
+
+  addNewPost(data:Posts):Observable<any>{
+    return this.clientHttp.post(this.api+'posts/save',data);
+  }
+
 }
