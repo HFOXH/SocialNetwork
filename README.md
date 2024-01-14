@@ -22,12 +22,6 @@ Para correr el proyecto usa:
   npm run start:dev
 ```
 
-
-## Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-
 <p align="center">
   <img src="https://santic.netlify.app/assets/img/sc.png" alt="Logo" width="150">
 </p>
